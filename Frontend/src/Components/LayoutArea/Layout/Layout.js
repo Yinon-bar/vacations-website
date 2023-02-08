@@ -7,10 +7,10 @@ import { useReducer } from "react";
 import AuthReducer from "../../../Context/AuthReducer";
 
 function Layout() {
-  const [auth, setAuth] = useReducer(AuthReducer, {});
+  // const [auth, setAuth] = useReducer(AuthReducer, {});
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={"inon"}>
       <div className="Layout">
         <Header />
         <Main />
