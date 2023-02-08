@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.css";
 import spinner from "../../../img/loading.gif";
+import AuthContext from "../../../Context/AuthContext";
 
 function Login() {
+  const { setAuth } = useContext(AuthContext);
+
   const [uName, setUname] = useState("");
   const [password, setPassword] = useState(123456);
   const [loading, setLoading] = useState();
