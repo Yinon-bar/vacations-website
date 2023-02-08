@@ -1,4 +1,3 @@
-import { OkPacket } from "mysql";
 import path from "path";
 import dal from "../02 - utils/dal";
 import VacationModel from "../04 - models/Model";
@@ -28,11 +27,5 @@ async function addVacation(vacation: VacationModel): Promise<VacationModel> {
   const data = await dal.execute(sql);
   return data;
 }
-
-// async function updateStatus(body: ServerModel): Promise<ServerModel> {
-//   const sql = `UPDATE servers SET serverStatus = '${body.status}' WHERE id = ${body.id};`;
-//   const data: OkPacket = await dal.execute(sql);
-//   return body;
-// }
 
 export default { getVacations, addVacation };
