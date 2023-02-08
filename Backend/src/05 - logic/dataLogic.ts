@@ -18,6 +18,7 @@ async function addVacation(vacation: VacationModel): Promise<VacationModel> {
     vacation.imageName = uuid() + ext;
     console.log(vacation);
     await vacation.image.mv("./src/01 - assets/images/" + vacation.imageName);
+    delete vacation.image;
   }
   const sql = `
   INSERT INTO 
