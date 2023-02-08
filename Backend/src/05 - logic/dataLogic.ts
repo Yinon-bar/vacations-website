@@ -31,7 +31,6 @@ async function addVacation(vacation: VacationModel): Promise<VacationModel> {
   `;
   const data = await dal.execute(sql);
   return data;
-  const df = 15;
 }
 
 // async function updateStatus(body: ServerModel): Promise<ServerModel> {
