@@ -13,15 +13,24 @@ function DataCard({ vacation }) {
 
   return (
     <div className="DataCard">
-      <div className="img">
-        <img
+      <div
+        className="img"
+        style={{
+          backgroundImage: `url(${
+            vacation.image === ""
+              ? "http://localhost:3001/images/generic.png"
+              : "http://localhost:3001/images/" + vacation.image
+          })`,
+        }}
+      >
+        {/* <img
           src={
             vacation.image === ""
               ? "http://localhost:3001/images/generic.png"
               : "http://localhost:3001/images/" + vacation.image
           }
           alt="destination"
-        />
+        /> */}
       </div>
       <h2>{vacation.description}</h2>
       <h4>From: {vacation.start_date}</h4>
