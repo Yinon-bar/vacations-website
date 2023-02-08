@@ -31,7 +31,7 @@
 }
 
 .DataCard .img {
-  background-image: url(../../../../img/generic.png);
+  /* background-image: url(../../../../img/generic.png); */
   background-size: 155%;
   background-position: center;
   background-repeat: no-repeat;

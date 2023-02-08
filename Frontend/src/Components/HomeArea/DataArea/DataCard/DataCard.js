@@ -9,10 +9,11 @@ function DataCard({ vacation }) {
   //     .then((resp) => resp.json())
   //     .then((data) => console.log(data));
   // }, []);
+  console.log(vacation);
 
   return (
     <div className="DataCard">
-      <div className="img"></div>
+      <img src={vacation.image} alt="destination" />
       <h2>{vacation.description}</h2>
       <h4>From: {vacation.start_date}</h4>
       <h4>To: {vacation.end_date}</h4>

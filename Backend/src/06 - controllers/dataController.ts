@@ -1,6 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
-import ServerModel from "../04 - models/Model";
+import UserModel from "../04 - models/UserModel";
 import dataLogic from "../05 - logic/dataLogic";
+import usersLogic from "../05 - logic/usersLogic";
+import authLogic from "../05 - logic/authLogic";
+import verifyLoggedIn from "../03 - middleware/verifyLoggedIn";
 
 const router = express.Router();
 
@@ -30,6 +33,33 @@ router.post(
   }
 );
 
+// Get users
+router.get(
+  "/users",
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const product = await usersLogic.getAllUsers();
+      response.json(product);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// Create a new user
+router.post(
+  "/users",
+  verifyLoggedIn,
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const user = new UserModel(request.body);
+      const newUser = await authLogic.register(user);
+      response.json(newUser);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 // router.put(
 //   "/servers",
 //   async (request: Request, response: Response, next: NextFunction) => {

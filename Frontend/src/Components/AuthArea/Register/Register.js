@@ -3,22 +3,31 @@ import "./Register.css";
 import spinner from "../../../img/loading.gif";
 
 function Register() {
-  const [email, setEmail] = useState("yinonbar1988@gmail.com");
+  const [fName, setFname] = useState("");
+  const [lName, setLname] = useState("");
+  const [uName, setUname] = useState("");
   const [password, setPassword] = useState(123456);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
 
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    fetch("", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ email: email, password: password }),
-    })
-      .then((resp) => resp.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-    // setLoading(false);
+    setTimeout(() => {
+      fetch("http://localhost:3001/api/auth/register", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          first_name: fName,
+          last_name: lName,
+          user_name: uName,
+          password: password,
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+      setLoading();
+    }, 2000);
   }
 
   return (
@@ -28,11 +37,27 @@ function Register() {
           <h1>Sign up</h1>
           <form onSubmit={(e) => handleSubmit(e)}>
             <label>
-              Enter your email
+              Enter your first name
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={fName}
+                onChange={(e) => setFname(e.target.value)}
+              />
+            </label>
+            <label>
+              Enter your last name
+              <input
+                type="text"
+                value={lName}
+                onChange={(e) => setLname(e.target.value)}
+              />
+            </label>
+            <label>
+              Enter your user name
+              <input
+                type="text"
+                value={uName}
+                onChange={(e) => setUname(e.target.value)}
               />
             </label>
             <label>
