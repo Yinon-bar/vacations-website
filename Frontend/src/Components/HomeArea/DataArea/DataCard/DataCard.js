@@ -13,7 +13,10 @@ function DataCard({ vacation }) {
 
   return (
     <div className="DataCard">
-      <img src={vacation.image} alt="destination" />
+      <img
+        src={"http://localhost:3001/images/" + vacation.image}
+        alt="destination"
+      />
       <h2>{vacation.description}</h2>
       <h4>From: {vacation.start_date}</h4>
       <h4>To: {vacation.end_date}</h4>

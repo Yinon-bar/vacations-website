@@ -8,6 +8,10 @@ import expressFileUpload from "express-fileupload";
 import authController from "./06 - controllers/authController";
 
 const server = express();
+
+// Midlleware for image routes
+server.use("/images", express.static("src/01 - assets/images"));
+
 server.use(express.json());
 server.use(expressFileUpload());
 
