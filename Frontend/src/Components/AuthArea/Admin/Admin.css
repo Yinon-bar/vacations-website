@@ -1,5 +1,5 @@
-.Home {
+.Admin {
   display: flex;
+  align-items: center;
   justify-content: center;
-  height: 93.8%;
 }

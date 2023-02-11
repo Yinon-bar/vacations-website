@@ -5,8 +5,16 @@
   flex-direction: column;
   flex-basis: 30%;
   box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.3);
-  /* padding: 1rem; */
+  cursor: pointer;
   border-radius: 1rem;
+}
+
+.DataCard:hover {
+  transition: 0.3s ease-in-out;
+  transform: scale(1.04);
+  /* transform: rotateZ(2deg); */
+
+  /* background-color: black; */
 }
 
 .DataCard h3 {
@@ -14,19 +22,37 @@
 }
 
 .DataCard button {
-  background-color: var(--info);
-  border: none;
+  z-index: 2;
+  background-color: var(--secondary);
+  border: 1px solid var(--primary);
   border-radius: 1rem;
   font-size: 1.2rem;
   padding: 0.3rem 1rem;
   color: #fff;
-  margin: 1rem 0rem;
+  margin: 1rem;
   cursor: pointer;
+}
+
+.DataCard button.follow {
+  height: 2.5rem;
+  border: none;
+  font-family: "Pattaya", "Poppins", sans-serif;
+  background-color: var(--success);
+}
+.DataCard button.edit {
+  height: 2.5rem;
+  border: none;
+  font-family: "Pattaya", "Poppins", sans-serif;
+  background-color: var(--warning);
 }
 
 .DataCard button:hover {
   transition: 0.2s ease-in-out;
   /* background-color: #00779e; */
+  transform: scale(0.96);
+}
+
+.DataCard button:active {
   transform: scale(0.96);
 }
 

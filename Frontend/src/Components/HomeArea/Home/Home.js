@@ -1,3 +1,4 @@
+import Footer from "../../LayoutArea/Footer/Footer";
 import ListData from "../DataArea/ListData/ListData";
 import "./Home.css";
 

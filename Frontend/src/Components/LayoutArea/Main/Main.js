@@ -1,3 +1,4 @@
+import Footer from "../Footer/Footer";
 import Routing from "../Routing/Routing";
 import "./Main.css";
 

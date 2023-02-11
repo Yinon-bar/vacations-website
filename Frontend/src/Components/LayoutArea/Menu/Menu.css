@@ -5,7 +5,13 @@
   height: 100%;
 }
 
+.Menu h1 {
+  font-family: "Pattaya", "Poppins", sans-serif;
+  color: #fff;
+}
+
 .Menu .Content {
+  height: 100%;
   display: flex;
 }
 
@@ -21,10 +27,12 @@
 }
 
 .Menu a.active {
-  font-weight: 800;
+  transition: 0.2s ease-in-out;
+  color: #fff;
+  font-weight: 700;
 }
 
 .Menu a:hover {
   transition: 0.15s ease-in;
-  background-color: #00779e;
+  background-color: var(--info);
 }

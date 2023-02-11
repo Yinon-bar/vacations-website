@@ -1,0 +1,65 @@
+.Contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      to top left,
+      rgba(23, 34, 46, 0.5),
+      rgba(23, 34, 46, 0.5)
+    ),
+    url(../../../../img/contact-mountain.png);
+  height: 95vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.Contact form {
+  background: rgba(19, 28, 39, 0.8);
+  color: #fff;
+  border-radius: 2rem;
+  width: 30%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Contact form h1 {
+  margin-bottom: 2.4rem;
+  margin-top: 1rem;
+}
+
+.Contact form label {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Contact form input {
+  width: 20rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  text-indent: 0.5rem;
+  padding: 0.3rem;
+  border: 1px solid var(--info);
+}
+
+.Contact form input[type="submit"] {
+  margin: 0;
+  margin-top: 2rem;
+  width: 100%;
+  border-radius: 0rem 0rem 2rem 2rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.Contact form input[type="submit"]:hover {
+  transition: 0.2s ease;
+  background-color: var(--info);
+  color: #fff;
+}

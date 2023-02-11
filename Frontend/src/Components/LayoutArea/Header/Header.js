@@ -10,7 +10,6 @@ function Header() {
     <div className="Header">
       <div className="Container">
         <Menu />
-        Context: {name}
       </div>
     </div>
   );

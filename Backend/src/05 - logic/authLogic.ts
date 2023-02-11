@@ -8,7 +8,7 @@ import { OkPacket } from "mysql";
 async function register(user: UserModel) {
   const sql = `
   INSERT INTO users 
-  VALUES(DEFAULT, '${user.first_name}', '${user.last_name}', '${user.user_name}', '${user.password}');
+  VALUES(DEFAULT, '${user.first_name}', '${user.last_name}', '${user.user_name}', '${user.password}', 1);
   `;
   const data = await dal.execute(sql);
   // Validation
@@ -19,7 +19,7 @@ async function register(user: UserModel) {
   return token;
 }
 
-async function login(credentials: CredentialsModel): Promise<string> {
+async function login(credentials: CredentialsModel) {
   const sql = `
   SELECT * FROM users 
   WHERE(user_name = '${credentials.user_name}' AND password = '${credentials.password}')
@@ -31,7 +31,7 @@ async function login(credentials: CredentialsModel): Promise<string> {
     return err;
   }
   const token = authJwt.getNewToken(data);
-  return token;
+  return { token, credentials };
 }
 
 export default { register, login };

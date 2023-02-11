@@ -1,0 +1,61 @@
+.Hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+      to top left,
+      rgba(23, 34, 46, 0.5),
+      rgba(23, 34, 46, 0.5)
+    ),
+    url(../../../img/landing-page.jpg);
+  height: 93vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.Hero > .Container > .Content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Hero > .Container > .Content h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.Hero > .Container > .Content h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.Hero > .Container > .Content button {
+  margin-top: 1rem;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--info);
+  border-radius: 2rem;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0px 7px 8px rgba(0, 0, 0, 0.3);
+}
+
+.Hero > .Container > .Content button:hover {
+  transition: 0.2s ease-in-out;
+  background-color: var(--primary);
+  transform: scale(1.02);
+}
+
+.Hero > .Container > .Content button:active {
+  transition: 0.05s ease-in-out;
+  transform: scale(0.97);
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.4);
+}
