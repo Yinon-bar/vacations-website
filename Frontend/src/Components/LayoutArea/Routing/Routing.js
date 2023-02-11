@@ -10,8 +10,9 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 function Routing() {
   return (
     <Routes>
-      <Route path="/" element={<Hero/>} />
-      <Route path="/vacations" element={<Home />} />
+      <Route path="/" element={<Hero />} />
+      <Route path="/vacations/*" element={<Home />} />
+      {/* <Route path="/vacations/:id" element={<DataSingle />} /> */}
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/admin" element={<Admin />} />

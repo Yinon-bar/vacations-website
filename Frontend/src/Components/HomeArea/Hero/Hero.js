@@ -16,7 +16,7 @@ function Hero() {
             </h3>
 
             <Link to={"/vacations"}>
-              <button> Book Now </button>
+              <button>Our vacations</button>
             </Link>
           </div>
         </div>

@@ -1,0 +1,62 @@
+.DataSingle {
+  /* background-color: blue; */
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DataSingle .Content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DataSingle .Content .CardContent {
+  height: 90%;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 2rem;
+  justify-content: space-between;
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.DataSingle .Content .CardContent button {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background-color: var(--info);
+  color: #fff;
+  border-radius: 2rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0px 0px 10px rgb(255, 255, 255, 0.5);
+}
+
+.DataSingle .Content .CardContent button:hover {
+  transition: 0.2s ease-in-out;
+  background-color: var(--secondary);
+  color: var(--primary);
+  transform: scale(1.02);
+}
+
+.DataSingle .Content .CardContent button:active {
+  transition: 0.05s ease-in-out;
+  transform: scale(0.97);
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.4);
+}
+
+.DataSingle .Content .img {
+  height: 40vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 2rem 2rem 0rem 0rem;
+}

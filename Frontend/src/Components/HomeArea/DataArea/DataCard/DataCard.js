@@ -4,6 +4,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { GrEdit } from "react-icons/gr";
 import { useContext, useState } from "react";
 import AuthContext from "../../../../Context/AuthContext";
+import { Link } from "react-router-dom";
 
 function DataCard({ vacation }) {
   // console.log(vacation);
@@ -26,8 +27,10 @@ function DataCard({ vacation }) {
     }
   }
 
+  function handleCard() {}
+
   return (
-    <div className="DataCard">
+    <div className="DataCard" onClick={handleCard}>
       <div
         className="img"
         style={{
@@ -38,7 +41,8 @@ function DataCard({ vacation }) {
           })`,
         }}
       ></div>
-      <h2>{vacation.description}</h2>
+      <h2>{vacation.destenation}</h2>
+      <p>{vacation.description}</p>
       <h4>From: {vacation.start_date}</h4>
       <h4>To: {vacation.end_date}</h4>
       <h4>{vacation.destination}</h4>
@@ -57,6 +61,9 @@ function DataCard({ vacation }) {
             <GrEdit />
           </button>
         )}
+        <button className="like">
+          <Link to={`${vacation.id}`}>More...</Link>
+        </button>
       </div>
     </div>
   );
