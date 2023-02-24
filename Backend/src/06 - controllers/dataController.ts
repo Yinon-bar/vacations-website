@@ -60,18 +60,67 @@ router.post(
     }
   }
 );
-// router.put(
-//   "/servers",
-//   async (request: Request, response: Response, next: NextFunction) => {
-//     try {
-//       const body = new ServerModel(request.body);
-//       console.log(body);
-//       const product = await dataLogic.updateStatus(body);
-//       response.json(product);
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// );
+// Create user "like"
+router.post(
+  "/likes",
+  verifyLoggedIn,
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const user = new UserModel(request.body.user);
+      // console.log(user);
+      const vacation = request.body.vacation;
+      const like = await dataLogic.addLike(user, vacation);
+      // console.log(user, vacation);
+      response.json(like);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// Get all likes
+router.get(
+  "/likes",
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const likes = await dataLogic.getAlllLikes();
+      response.json(likes);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+// Get single like
+router.post(
+  "/likes/:id",
+  async (request: Request, response: Response, next: NextFunction) => {
+    const vacation = request.body.id;
+    console.log("backend: " + vacation);
+    const userId = +request.params.id;
+    // console.log(userId);
+
+    try {
+      const product = await dataLogic.getSingleLike(userId, vacation);
+      response.json(product);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+// Delete user "like"
+router.delete(
+  "/likes/:id",
+  verifyLoggedIn,
+  async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const userId = +request.params.id;
+      const like = await dataLogic.removeLike(userId);
+      response.status(204).json(like);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 export default router;

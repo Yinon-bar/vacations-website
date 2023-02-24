@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Register.css";
 import spinner from "../../../img/loading.gif";
+import AuthContext from "../../../Context/AuthContext";
 
 function Register() {
+  const { setAuth } = useContext(AuthContext);
   const [fName, setFname] = useState("");
   const [lName, setLname] = useState("");
   const [uName, setUname] = useState("");
@@ -24,7 +26,10 @@ function Register() {
         }),
       })
         .then((resp) => resp.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          setAuth({ type: "register", payload: data });
+        })
         .catch((error) => console.log(error));
       setLoading();
     }, 2000);

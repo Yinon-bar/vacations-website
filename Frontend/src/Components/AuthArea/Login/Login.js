@@ -29,7 +29,7 @@ function Login() {
         })
         .catch((error) => console.log(error));
       setLoading();
-    }, 2000);
+    }, 1000);
   }
 
   return (

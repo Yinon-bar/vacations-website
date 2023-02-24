@@ -11,12 +11,8 @@ async function register(user: UserModel) {
   VALUES(DEFAULT, '${user.first_name}', '${user.last_name}', '${user.user_name}', '${user.password}', 1);
   `;
   const data = await dal.execute(sql);
-  // Validation
-  // Create new user
-  // const newUser = await dal.
-  // genereate token
   const token = authJwt.getNewToken(data);
-  return token;
+  return { token, user };
 }
 
 async function login(credentials: CredentialsModel) {
@@ -31,7 +27,7 @@ async function login(credentials: CredentialsModel) {
     return err;
   }
   const token = authJwt.getNewToken(data);
-  return { token, credentials };
+  return { token, ...data };
 }
 
 export default { register, login };

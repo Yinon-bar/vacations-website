@@ -2,35 +2,52 @@ import "./DataCard.css";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { GrEdit } from "react-icons/gr";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AuthContext from "../../../../Context/AuthContext";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function DataCard({ vacation }) {
-  // console.log(vacation);
-
   const { auth } = useContext(AuthContext);
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(null);
+
+  console.log(vacation);
 
   function likeHandle(e) {
     if (auth) {
-      console.log("Autenticated!");
-      if (like === true) {
-        setLike(false);
-        // axios
+      if (!vacation.isLiked) {
+        // setLike(true);
+        const user = auth[0];
+        const data = { user, vacation };
+        axios
+          .post("http://localhost:3001/api/likes", data)
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
       } else {
-        setLike(true);
-        // axios
+        // setLike(false);
+        const userId = auth[0].id;
+        const currentVacation = { ...vacation };
+        axios
+          .post("http://localhost:3001/api/likes/" + userId, currentVacation)
+          .then((data) => {
+            // console.log(data.data);
+            deleteLike(data.data[0].id);
+          })
+          .catch((error) => console.log(error));
+        function deleteLike(likeID) {
+          axios
+            .delete("http://localhost:3001/api/likes/" + likeID)
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
+        }
       }
     } else {
       alert("No auth");
     }
   }
 
-  function handleCard() {}
-
   return (
-    <div className="DataCard" onClick={handleCard}>
+    <div className="DataCard">
       <div
         className="img"
         style={{
@@ -47,9 +64,10 @@ function DataCard({ vacation }) {
       <h4>To: {vacation.end_date}</h4>
       <h4>{vacation.destination}</h4>
       <h4>&#8362; {vacation.price}</h4>
+      <h4>ID: {vacation.id}</h4>
       <div className="social">
         <button className="like" onClick={(e) => likeHandle(e)}>
-          {like ? (
+          {vacation.isLiked ? (
             <AiFillLike style={{ color: "var(--primary)" }} />
           ) : (
             <AiOutlineLike style={{ color: "var(--primary)" }} />
