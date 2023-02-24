@@ -27,8 +27,7 @@ function ListData({ vacations }) {
 
   return (
     <div className="ListData">
-      {console.log(likedVacations)}
-      {likedVacations.map((vacation) => (
+      {vacations.map((vacation) => (
         <DataCard
           key={vacation.id}
           vacation={vacation}

@@ -11,8 +11,6 @@ function DataCard({ vacation }) {
   const { auth } = useContext(AuthContext);
   // const [like, setLike] = useState(null);
 
-  console.log(vacation);
-
   function likeHandle(e) {
     if (auth) {
       if (!vacation.isLiked) {
