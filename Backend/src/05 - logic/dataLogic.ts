@@ -2,8 +2,7 @@ import path from "path";
 import dal from "../02 - utils/dal";
 import VacationModel from "../04 - models/Model";
 import ServerModel from "../04 - models/Model";
-import Model from "../04 - models/Model";
-import { uuid } from "uuid4";
+import { uuid } from "uuidv4";
 import UserModel from "../04 - models/UserModel";
 import { OkPacket } from "mysql";
 
