@@ -25,7 +25,6 @@ function Login() {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          console.log(data);
           setAuth({ type: "login", payload: data });
         })
         .catch((error) => console.log(error));

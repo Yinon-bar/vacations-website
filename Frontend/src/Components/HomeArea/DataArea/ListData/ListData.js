@@ -26,7 +26,7 @@ function ListData() {
       setLikes(apiLikes.data);
       setVacations(apiVacations.data);
       setLikedVacations(vacationsLiked);
-      setApiData([likes, vacations]);
+      setApiData(apiLikes.data);
     };
     getApiData();
   }, []);

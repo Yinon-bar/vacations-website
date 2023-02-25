@@ -11,29 +11,46 @@ import DataContext from "../../../../Context/DataContext";
 function DataCard({ vacation }) {
   const { auth } = useContext(AuthContext);
   const [like, setLike] = useState(null);
+  // const [insertedId, setInsertedId] = useState(null);
   const { apiData, setApiData } = useContext(DataContext);
 
   useEffect(() => {
-    console.log(vacation);
     if (vacation.isLiked) {
       setLike(true);
-    } else {
-      // setLike(true);
     }
   }, []);
 
   function likeHandle(e) {
     if (auth) {
       if (!vacation.isLiked) {
-        setLike(false);
+        // console.log(vacation);
+        vacation.isLiked = true;
+        setLike(true);
         const user = auth[0];
         const data = { user, vacation };
-        axios
-          .post("http://localhost:3001/api/likes", data)
-          .then((data) => console.log(data.data))
-          .catch((error) => console.log(error));
+        const getApiData = async () => {
+          const result = await axios
+            .post("http://localhost:3001/api/likes", data)
+            .then((data) => {
+              console.log(data.data.insertId);
+              return data.data.insertId;
+            })
+            .catch((error) => console.log(error));
+          // setInsertedId(result);
+          setApiData([
+            ...apiData,
+            {
+              id: result,
+              user_id: data.user.id,
+              vacation_id: data.vacation.id,
+            },
+          ]);
+        };
+        getApiData();
+        // console.log(insertedId);
+        console.log(apiData);
       } else {
-        setLike(true);
+        setLike(false);
         const userId = auth[0].id;
         const currentVacation = { ...vacation };
         axios
@@ -48,6 +65,8 @@ function DataCard({ vacation }) {
             .delete("http://localhost:3001/api/likes/" + likeID)
             .then((data) => console.log(data))
             .catch((error) => console.log(error));
+          // פה צריך להכניס מחיקה
+          // setApiData(apiData.splice());
         }
       }
     } else {
