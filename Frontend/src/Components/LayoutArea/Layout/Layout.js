@@ -8,7 +8,8 @@ import AuthReducer from "../../../Context/AuthReducer";
 import { useReducer, useState } from "react";
 
 function Layout() {
-  const [auth, setAuth] = useReducer(AuthReducer, null);
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  const [auth, setAuth] = useReducer(AuthReducer, user);
   const [apiData, setApiData] = useState([]);
   // console.log(auth);
 

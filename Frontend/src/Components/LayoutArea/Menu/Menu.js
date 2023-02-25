@@ -9,6 +9,7 @@ function Menu() {
 
   function logout(e) {
     setAuth({ type: "logout" });
+    sessionStorage.removeItem("user");
   }
 
   return (
