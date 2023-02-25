@@ -15,20 +15,20 @@ function DataCard({ vacation }) {
 
   // console.log(apiData);
 
-  // console.log(vacation);
+  console.log(vacation);
 
   function likeHandle(e) {
     if (auth) {
       if (!vacation.isLiked) {
-        setLike(true);
+        setLike(false);
         const user = auth[0];
         const data = { user, vacation };
         axios
           .post("http://localhost:3001/api/likes", data)
-          .then((data) => console.log(data))
+          .then((data) => setApiData(data.data))
           .catch((error) => console.log(error));
       } else {
-        setLike(false);
+        setLike(true);
         const userId = auth[0].id;
         const currentVacation = { ...vacation };
         axios

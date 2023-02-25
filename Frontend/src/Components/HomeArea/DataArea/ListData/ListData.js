@@ -19,7 +19,7 @@ function ListData() {
       const vacationsLiked = apiVacations.data.map((vacation) => {
         return {
           ...vacation,
-          isLiked: !!apiVacations.data.find(
+          isLiked: !!apiLikes.data.find(
             (like) => like.vacation_id === vacation.id
           ),
         };
@@ -27,12 +27,14 @@ function ListData() {
       setLikes(apiLikes.data);
       setVacations(apiVacations.data);
       setLikedVacations(vacationsLiked);
+      setApiData([likes, vacations]);
     };
     getApiData();
   }, []);
   console.log(likes);
   console.log(vacations);
   console.log(likedVacations);
+  console.log(apiData);
 
   return (
     <div className="ListData">
