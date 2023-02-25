@@ -1,30 +1,39 @@
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../../../Context/AuthContext";
-// import { Route, Routes } from "react-router-dom";
+import axios from "axios";
+import DataContext from "../../../../Context/DataContext";
 import DataCard from "../DataCard/DataCard";
-// import DataSingle from "../DataSingle/DataSingle";
 import "./ListData.css";
 
 function ListData() {
-  // const [likedVacations, setLikedVacation] = useState([]);
-
+  // const [likesCheck, setLikesCheck] = useState(true);
   const [likes, setLikes] = useState([]);
   const [vacations, setVacations] = useState([]);
   const [likedVacations, setLikedVacations] = useState([]);
-  const { setAuth } = useContext(AuthContext);
+  const { apiData, setApiData } = useContext(DataContext);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/likes")
-      .then((resp) => resp.json(resp))
-      .then((data) => setLikes(data));
-    fetch("http://localhost:3001/api/vacations")
-      .then((resp) => resp.json())
-      .then((data) => setVacations(data));
-    // console.log("inon");
+    const getApiData = async () => {
+      const apiLikes = await axios("http://localhost:3001/api/likes");
+      setLikes(apiLikes.data);
+      console.log(1);
+      console.log(likes);
+      const apiVacations = await axios("http://localhost:3001/api/vacations");
+      setVacations(apiVacations.data);
+      console.log(2);
+      console.log(vacations);
+      // setApiData([[...vacations], [...likes]]);
+      const newData = await checkLikes(vacations);
+      setLikedVacations(newData);
+      console.log(3);
+      console.log(likedVacations);
+    };
+    getApiData();
   }, []);
-  if (likes.length && vacations.length && !likedVacations.length) {
-    checkLikes(vacations);
-  }
+  // if (likesCheck) {
+  //   checkLikes(vacations);
+  // } else {
+  //   console.log("inon");
+  // }
 
   function checkLikes(data) {
     const vacationsLiked = data.map((vacation) => {
@@ -34,14 +43,18 @@ function ListData() {
         isLiked: !!data.find((like) => like.vacation_id === vacation.id),
       };
     });
-    setLikedVacations(vacationsLiked);
+    return vacationsLiked;
   }
+  // console.log(likes);
+  // console.log(vacations);
+  // console.log(likedVacations);
+  // console.log(apiData);
+  // console.log("--------------------------------------");
 
   return (
     <div className="ListData">
       <div className="Container">
         <div className="content">
-          {/* {console.log(likedVacations)} */}
           {likedVacations.map((vacation) => (
             <DataCard key={vacation.id} vacation={vacation} />
           ))}

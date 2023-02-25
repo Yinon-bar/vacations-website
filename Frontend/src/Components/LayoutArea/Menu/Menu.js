@@ -5,7 +5,7 @@ import AuthContext from "../../../Context/AuthContext";
 
 function Menu() {
   const { auth, setAuth } = useContext(AuthContext);
-  console.log(auth);
+  // console.log(auth);
 
   function logout(e) {
     setAuth({ type: "logout" });

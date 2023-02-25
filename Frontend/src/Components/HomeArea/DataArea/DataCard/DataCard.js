@@ -6,10 +6,14 @@ import { useContext, useState } from "react";
 import AuthContext from "../../../../Context/AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import DataContext from "../../../../Context/DataContext";
 
 function DataCard({ vacation }) {
   const { auth } = useContext(AuthContext);
   const [like, setLike] = useState(null);
+  const { apiData, setApiData } = useContext(DataContext);
+
+  // console.log(apiData);
 
   // console.log(vacation);
 
