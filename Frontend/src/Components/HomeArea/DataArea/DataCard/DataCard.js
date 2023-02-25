@@ -67,7 +67,7 @@ function DataCard({ vacation }) {
       <h4>ID: {vacation.id}</h4>
       <div className="social">
         <button className="like" onClick={(e) => likeHandle(e)}>
-          {vacation.isLiked ? (
+          {like ? (
             <AiFillLike style={{ color: "var(--primary)" }} />
           ) : (
             <AiOutlineLike style={{ color: "var(--primary)" }} />

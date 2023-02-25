@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../../../../Context/AuthContext";
 // import { Route, Routes } from "react-router-dom";
 import DataCard from "../DataCard/DataCard";
 // import DataSingle from "../DataSingle/DataSingle";
@@ -10,6 +11,7 @@ function ListData() {
   const [likes, setLikes] = useState([]);
   const [vacations, setVacations] = useState([]);
   const [likedVacations, setLikedVacations] = useState([]);
+  const { setAuth } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/likes")
@@ -37,10 +39,14 @@ function ListData() {
 
   return (
     <div className="ListData">
-      {/* {console.log(likedVacations)} */}
-      {likedVacations.map((vacation) => (
-        <DataCard key={vacation.id} vacation={vacation} />
-      ))}
+      <div className="Container">
+        <div className="content">
+          {/* {console.log(likedVacations)} */}
+          {likedVacations.map((vacation) => (
+            <DataCard key={vacation.id} vacation={vacation} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
