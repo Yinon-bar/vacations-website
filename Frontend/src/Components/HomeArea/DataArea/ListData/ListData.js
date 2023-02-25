@@ -15,7 +15,6 @@ function ListData() {
     const getApiData = async () => {
       const apiLikes = await axios("http://localhost:3001/api/likes");
       const apiVacations = await axios("http://localhost:3001/api/vacations");
-      console.log(apiVacations.data);
       const vacationsLiked = apiVacations.data.map((vacation) => {
         return {
           ...vacation,
@@ -31,10 +30,6 @@ function ListData() {
     };
     getApiData();
   }, []);
-  console.log(likes);
-  console.log(vacations);
-  console.log(likedVacations);
-  console.log(apiData);
 
   return (
     <div className="ListData">
