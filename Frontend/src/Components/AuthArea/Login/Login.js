@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import "./Login.css";
 import spinner from "../../../img/loading.gif";
 import AuthContext from "../../../Context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
   const [uName, setUname] = useState("");
   const [password, setPassword] = useState(123456);
@@ -29,6 +30,7 @@ function Login() {
         })
         .catch((error) => console.log(error));
       setLoading();
+      navigate("/vacations");
     }, 1000);
   }
 

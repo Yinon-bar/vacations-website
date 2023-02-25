@@ -5,7 +5,7 @@ import AuthContext from "../../../Context/AuthContext";
 
 function Menu() {
   const { auth, setAuth } = useContext(AuthContext);
-  console.log(auth);
+  // console.log(auth);
 
   function logout(e) {
     setAuth({ type: "logout" });
@@ -23,6 +23,7 @@ function Menu() {
               Logout
             </Link>
             <NavLink to="/admin">Admin</NavLink>
+            <h4 className="userName">Hello {auth[0].user_name}</h4>
           </>
         )}
         {!auth && (

@@ -2,8 +2,10 @@ import "./Admin.css";
 import { useState } from "react";
 import spinner from "../../../img/loading.gif";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Admin() {
+  const navigate = useNavigate();
   const [description, setDescription] = useState("");
   const [destination, setdestination] = useState("");
   const [image, setImage] = useState("");
@@ -29,6 +31,7 @@ function Admin() {
         .then((data) => console.log(data))
         .catch((error) => console.log(error));
       setLoading();
+      navigate("/");
     }, 2000);
   }
 
