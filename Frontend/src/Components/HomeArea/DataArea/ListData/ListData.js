@@ -14,50 +14,37 @@ function ListData() {
   useEffect(() => {
     const getApiData = async () => {
       const apiLikes = await axios("http://localhost:3001/api/likes");
-      setLikes(apiLikes.data);
-      console.log(1);
-      console.log(likes);
       const apiVacations = await axios("http://localhost:3001/api/vacations");
+      console.log(apiVacations.data);
+      const vacationsLiked = apiVacations.data.map((vacation) => {
+        return {
+          ...vacation,
+          isLiked: !!apiVacations.data.find(
+            (like) => like.vacation_id === vacation.id
+          ),
+        };
+      });
+      setLikes(apiLikes.data);
       setVacations(apiVacations.data);
-      console.log(2);
-      console.log(vacations);
-      // setApiData([[...vacations], [...likes]]);
-      const newData = await checkLikes(vacations);
-      setLikedVacations(newData);
-      console.log(3);
-      console.log(likedVacations);
+      setLikedVacations(vacationsLiked);
     };
     getApiData();
   }, []);
-  // if (likesCheck) {
-  //   checkLikes(vacations);
-  // } else {
-  //   console.log("inon");
-  // }
-
-  function checkLikes(data) {
-    const vacationsLiked = data.map((vacation) => {
-      return {
-        ...vacation,
-        // isLiked: true,
-        isLiked: !!data.find((like) => like.vacation_id === vacation.id),
-      };
-    });
-    return vacationsLiked;
-  }
-  // console.log(likes);
-  // console.log(vacations);
-  // console.log(likedVacations);
-  // console.log(apiData);
-  // console.log("--------------------------------------");
+  console.log(likes);
+  console.log(vacations);
+  console.log(likedVacations);
 
   return (
     <div className="ListData">
       <div className="Container">
         <div className="content">
-          {likedVacations.map((vacation) => (
-            <DataCard key={vacation.id} vacation={vacation} />
-          ))}
+          {likedVacations.length ? (
+            likedVacations.map((vacation) => (
+              <DataCard key={vacation.id} vacation={vacation} />
+            ))
+          ) : (
+            <h2>no info</h2>
+          )}
         </div>
       </div>
     </div>
