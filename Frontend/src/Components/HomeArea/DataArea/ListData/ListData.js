@@ -1,40 +1,47 @@
 import { useEffect, useState } from "react";
+// import { Route, Routes } from "react-router-dom";
 import DataCard from "../DataCard/DataCard";
+// import DataSingle from "../DataSingle/DataSingle";
 import "./ListData.css";
 
-function ListData({ vacations }) {
-  const [likedVacations, setLikedVacation] = useState([]);
+function ListData() {
+  // const [likedVacations, setLikedVacation] = useState([]);
 
-  console.log(vacations);
+  const [likes, setLikes] = useState([]);
+  const [vacations, setVacations] = useState([]);
+  const [likedVacations, setLikedVacations] = useState([]);
+
   useEffect(() => {
-    if (vacations) {
-      fetch("http://localhost:3001/api/likes")
-        .then((resp) => resp.json(resp))
-        .then((data) => checkLikes(data));
-    }
+    fetch("http://localhost:3001/api/likes")
+      .then((resp) => resp.json(resp))
+      .then((data) => setLikes(data));
+    fetch("http://localhost:3001/api/vacations")
+      .then((resp) => resp.json())
+      .then((data) => setVacations(data));
+    // console.log("inon");
   }, []);
+  if (likes.length && vacations.length && !likedVacations.length) {
+    checkLikes(vacations);
+  }
+
   function checkLikes(data) {
-    const vacationsLiked = vacations.map((vacation) => {
+    const vacationsLiked = data.map((vacation) => {
       return {
         ...vacation,
+        // isLiked: true,
         isLiked: !!data.find((like) => like.vacation_id === vacation.id),
       };
     });
-    setLikedVacation(vacationsLiked);
-    console.log(vacationsLiked);
+    setLikedVacations(vacationsLiked);
   }
-
 
   return (
     <div className="ListData">
-      {vacations.map((vacation) => (
-        <DataCard
-          key={vacation.id}
-          vacation={vacation}
-        />
+      {/* {console.log(likedVacations)} */}
+      {likedVacations.map((vacation) => (
+        <DataCard key={vacation.id} vacation={vacation} />
       ))}
     </div>
   );
 }
-
 export default ListData;
