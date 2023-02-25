@@ -2,7 +2,7 @@ import "./DataCard.css";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { GrEdit } from "react-icons/gr";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../../Context/AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -13,9 +13,14 @@ function DataCard({ vacation }) {
   const [like, setLike] = useState(null);
   const { apiData, setApiData } = useContext(DataContext);
 
-  // console.log(apiData);
-
-  console.log(vacation);
+  useEffect(() => {
+    console.log(vacation);
+    if (vacation.isLiked) {
+      setLike(true);
+    } else {
+      // setLike(true);
+    }
+  }, []);
 
   function likeHandle(e) {
     if (auth) {
@@ -25,7 +30,7 @@ function DataCard({ vacation }) {
         const data = { user, vacation };
         axios
           .post("http://localhost:3001/api/likes", data)
-          .then((data) => setApiData(data.data))
+          .then((data) => console.log(data.data))
           .catch((error) => console.log(error));
       } else {
         setLike(true);
