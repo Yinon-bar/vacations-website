@@ -18,12 +18,23 @@ function Menu() {
       <div className="Content">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/vacations">Vacations list</NavLink>
-        {auth && (
+        {auth?.user.role === "Admin" && (
           <>
             <Link to="/" onClick={logout}>
               Logout
             </Link>
             <NavLink to="/admin">Admin</NavLink>
+            <h4 className="userName">
+              {"Hello "}
+              {auth.user.user_name}
+            </h4>
+          </>
+        )}
+        {auth?.user.role === "User" && (
+          <>
+            <Link to="/" onClick={logout}>
+              Logout
+            </Link>
             <h4 className="userName">
               {"Hello "}
               {auth.user.user_name}

@@ -8,7 +8,7 @@ import { OkPacket } from "mysql";
 async function register(user: UserModel) {
   const sql = `
   INSERT INTO users 
-  VALUES(DEFAULT, '${user.first_name}', '${user.last_name}', '${user.user_name}', '${user.password}', 1);
+  VALUES(DEFAULT, '${user.first_name}', '${user.last_name}', '${user.user_name}', '${user.password}', '${user.role}');
   `;
   const data = await dal.execute(sql);
   const token = authJwt.getNewToken(data);

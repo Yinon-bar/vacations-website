@@ -21,7 +21,7 @@ function DataCard({ vacation }) {
   }, []);
 
   function likeHandle(e) {
-    if (auth) {
+    if (auth?.user.role === "User") {
       if (!vacation.isLiked) {
         // console.log(vacation);
         vacation.isLiked = true;
@@ -101,8 +101,11 @@ function DataCard({ vacation }) {
             <AiOutlineLike style={{ color: "var(--primary)" }} />
           )}
         </button>
-        <button className="follow">Follow</button>
-        {auth && (
+        {auth?.user.role === "User" && (
+          <button className="follow">Follow</button>
+        )}
+
+        {auth?.user.role === "Admin" && (
           <button className="edit">
             <GrEdit />
           </button>
