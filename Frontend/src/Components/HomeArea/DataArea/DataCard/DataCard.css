@@ -47,7 +47,7 @@
 .DataCard button.more {
   height: 2.5rem;
   border: none;
-  background-color: var(--success);
+  background-color: var(--info);
 }
 
 .DataCard button.more a {
