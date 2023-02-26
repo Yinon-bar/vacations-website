@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import "./Register.css";
 import spinner from "../../../img/loading.gif";
 import AuthContext from "../../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
   const [fName, setFname] = useState("");
   const [lName, setLname] = useState("");
@@ -29,10 +31,12 @@ function Register() {
         .then((data) => {
           console.log(data);
           setAuth({ type: "register", payload: data });
+          sessionStorage.setItem("user", JSON.stringify(data));
         })
         .catch((error) => console.log(error));
       setLoading();
-    }, 2000);
+      navigate("/vacations");
+    }, 1000);
   }
 
   return (

@@ -27,7 +27,8 @@ async function login(credentials: CredentialsModel) {
     return err;
   }
   const token = authJwt.getNewToken(data);
-  return { token, ...data };
+  const user = data[0];
+  return { token, user };
 }
 
 export default { register, login };

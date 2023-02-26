@@ -25,6 +25,7 @@ function Login() {
       })
         .then((resp) => resp.json())
         .then((data) => {
+          console.log(data);
           setAuth({ type: "login", payload: data });
           sessionStorage.setItem("user", JSON.stringify(data));
         })
