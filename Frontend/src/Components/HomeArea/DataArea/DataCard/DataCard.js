@@ -2,6 +2,7 @@ import "./DataCard.css";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
 import { GrEdit } from "react-icons/gr";
+import { MdDeleteForever } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../../Context/AuthContext";
 import { Link } from "react-router-dom";
@@ -94,23 +95,29 @@ function DataCard({ vacation }) {
       <h4>&#8362; {vacation.price}</h4>
       <h4>ID: {vacation.id}</h4>
       <div className="social">
-        <button className="like" onClick={(e) => likeHandle(e)}>
-          {like ? (
-            <AiFillLike style={{ color: "var(--primary)" }} />
-          ) : (
-            <AiOutlineLike style={{ color: "var(--primary)" }} />
-          )}
-        </button>
+        {auth?.user.role === "User" && (
+          <button className="like" onClick={(e) => likeHandle(e)}>
+            {like ? (
+              <AiFillLike style={{ color: "var(--primary)" }} />
+            ) : (
+              <AiOutlineLike style={{ color: "var(--primary)" }} />
+            )}
+          </button>
+        )}
         {auth?.user.role === "User" && (
           <button className="follow">Follow</button>
         )}
-
         {auth?.user.role === "Admin" && (
           <button className="edit">
             <GrEdit />
           </button>
         )}
-        <button className="like">
+        {auth?.user.role === "Admin" && (
+          <button className="delete">
+            <MdDeleteForever />
+          </button>
+        )}
+        <button className="more">
           <Link to={`${vacation.id}`}>More...</Link>
         </button>
       </div>
